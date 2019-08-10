@@ -10,6 +10,9 @@ import helper.ObservableHelpers._
 
 object ChangeStreamExample {
 
+  /**
+    * This function tests the changestream function of MongoDB.
+    */
   def testUpdateAndDeleteFunction() ={
     val mongoClient = createMongoClient("myUserAdmin", "admin", "abc123")
     val database = mongoClient.getDatabase("hr")

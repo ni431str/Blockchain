@@ -9,6 +9,13 @@ import scala.util.Random
 
 object saveLoadKeyHelper {
 
+  /**
+    * A Test method to create 2 PrivateKeys and they're PublicKeys
+    *
+    * @param locationPrivate1 location to save the first PrivateKey
+    * @param locationPrivate2 location to save the second PrivateKey
+    * @param locationPublic location to save the PublicKeys of both PrivateKeys
+    */
   def createTestPrivatePublicKeys(locationPrivate1: String, locationPrivate2: String, locationPublic: String): Unit = {
     saveNewPrivateKeyToLocation(locationPrivate1)
     saveNewPrivateKeyToLocation(locationPrivate2)
@@ -19,6 +26,12 @@ object saveLoadKeyHelper {
 
   }
 
+  /**
+    * Saving a PublicKey into a choosen location. More than 1 PublicKey in the same location, will be appended in a new line
+    *
+    * @param location The Location where the PublicKey should be safed
+    * @param pubKey the Key which should be saved
+    */
   def savePublicKeyToLocation(location: String, pubKey: BigInt):Unit = {
     val file = Path(location)
     if (file.exists) {
@@ -33,6 +46,13 @@ object saveLoadKeyHelper {
     }
   }
 
+  /**
+    * Get the PublicKey of choosen location
+    *
+    * @param location The Location where the publicKey is safed
+    * @param index The Line in which the PublicKey is saved
+    * @return The PublicKey in choosen location and line
+    */
   def getPublicKeyFromLocation(location: String, index: Int) :BigInt = {
     val path = Path(location)
     if (path.exists) {
@@ -43,6 +63,11 @@ object saveLoadKeyHelper {
     }
   }
 
+  /**
+    * Creation of an new PrivateKey at given location
+    *
+    * @param location where to safe the PrivateKey
+    */
   def saveNewPrivateKeyToLocation(location: String) : Unit = {
     val pw = new PrintWriter(new File(location))
     val secret = BigInt(212, new Random)
@@ -51,6 +76,12 @@ object saveLoadKeyHelper {
     pw.close()
   }
 
+  /**
+    * Get the PrivateKey of choosen location
+    *
+    * @param location The location where the PrivateKey is safed
+    * @return The PublicKey in choosen location
+    */
   def getPrivateKeyFromLocation(location: String) :Key = {
     val path = Path(location)
     if (path.exists) {
